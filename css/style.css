@@ -1,0 +1,41 @@
+#title {
+	padding: 3%;
+	font-size: 130%;
+	text-align: center;
+	margin-top: 5%;
+}
+
+#description {
+	padding: 4%;
+	text-align: center;
+	width: 30%;
+	margin-left: 31%;
+	margin-top: -4.5%;
+}
+
+#textWritten {
+	margin-top: -5%;
+	padding: 2%;
+}
+
+#saveText {
+	padding: 4%;
+	margin-top: -2%;
+	text-align: center;
+}
+
+
+#textInput {
+	text-align: center;
+
+}
+
+#textInputButton {
+	text-align: center;
+	padding: .5%;
+}
+
+#textWritten {
+	text-align: center;
+	padding: 3%;
+}

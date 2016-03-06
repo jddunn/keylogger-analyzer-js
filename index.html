@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Keylogger / Analyzer Emulator</title>
+
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/style.css?v=1.0">
+
+    <script src="main.js"></script>
+    <script src="textInput.js"></script>
+
+  </head>
+  <body>
+    <div id = "title">
+      <h3>Keylogger / Analyzer Emulator</h3>
+    </div>
+    <div id = "description">
+      <p>This webpage has been injected with a keylogger in JavaScript!<p>
+      <br>This site is designed to show the dangers of a keylogger with analytical / data organizing features. The keylogger
+      looks for instances of possible passwords by checking for phrases that have been entered exactly twice. It also lists the frequencies of words that have been recorded. <br>
+      <br>Type anything you want on this page (It doesn't have to be in the text box!) and hit 'Download Logs' to see what kind of 
+      data keyloggers can pick up, if one manages to get onto your page. 
+    </div>
+
+  <div id = "textWritten"> 
+  </div>
+
+  <div id = "textInput">
+    <textarea class="textWrite" id="myText" onkeypress ="handleKeyPress(event);"></textarea>
+  </div>
+
+  <div id = "textInputButton"> 
+    <!-- <input type="button" value="enter" onclick="textInput()"/> -->
+      <button id="but4" onclick="textInput()">enter</button>
+  </div>
+
+    <div id = "saveText"> 
+      <!-- <input id="inputFileNameToSaveAs"></input> -->
+      <button onclick="saveTextAsFile()">Download Logs</button>
+    </div> 
+
+  </body>
+</html>
