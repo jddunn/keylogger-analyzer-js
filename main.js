@@ -111,7 +111,7 @@ function getKeyAndValues(a, b) {                    //  Combines the two arrays 
 }
 
 function objToString (counts) {         //  Make object into string to send into text file
-    strObj = "Word Counter: " + "\n" + "(Ignore first blank line):" + "\n" + "\n";
+    strObj = "Word Counter: " + "\n" + "(Ignore first blank line)" + "\n" + "\n";
     for (var p in counts) {
         if (counts.hasOwnProperty(p)) {
             strObj +=  "Word: " + p + " - " + "Frequency: " + counts[p] +"\n";
