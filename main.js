@@ -55,7 +55,7 @@ onkeypress = function(e) { // calling the function to execute whenever a keystro
     objToString(counts);
     hasDuplicates(counts, a, b);
 	// console.log(allTextSplit);
-}, 300); // set interval to execute function continuously 
+}, 3000); // set interval to execute function continuously 
 
 
 function splitAllText(allText) {		//	Splits the text by spaces to make words
