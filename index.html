@@ -9,7 +9,15 @@
 
     <script src="main.js"></script>
     <script src="textInput.js"></script>
-    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-39846512-4', 'auto');
+      ga('send', 'pageview');
+  </script>
   </head>
   <body>
     <div id = "title">
@@ -20,7 +28,7 @@
       <br>This site is designed to show the dangers of a keylogger with analytical / data organizing features. The keylogger
       looks for instances of possible passwords by checking for phrases that have been entered exactly twice. It also lists the frequencies of words that have been recorded. <br>
       <br>Type anything you want on this page (It doesn't have to be in the text box!) and hit 'Download Logs' to see what kind of 
-      data keyloggers can pick up, if one manages to get onto your page. Currently the code is written to filter out text every 3 seconds, and can be changed to record / parse logs on 'ENTER' or other key bindings instead of using timers.
+      data keyloggers can pick up, if one manages to get onto your page. Currently the code is written to filter out text every 5 seconds, and can be changed to record / parse logs on 'ENTER' or other key bindings instead of using timers.
     </div>
 
   <div id = "textWritten"> 

