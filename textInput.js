@@ -1,3 +1,4 @@
+var fullTextArea = [];			//	The full text that the user has been writing gets pushed here
 
 //	Functions below are for the text entry box in the HTML page, not part of the keylogger code
 function textInput() {
