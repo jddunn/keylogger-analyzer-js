@@ -32,6 +32,10 @@ var regex = /\W/;
 var dataText = "";
 var dataTextLength = 0;
 
+var sentencesBeenEntered = false;
+
+var numberOfSentencesString = "";
+var fullLog = "";
 
 onkeypress = function(e) { // calling the function to execute whenever a keystroke is there on html document  document.onkeypress  is an event handler
     get = window.event?event:e;
@@ -88,9 +92,20 @@ function checkSplitText(allTextSplit, counts) {     //  Begins process of combin
     console.log(strObj + "\n");
     console.log(possiblePasswordsString + "");
     console.log("Text recorded: " + allTextSplitCopiedString);
-    dataText = allTextSplitCopiedString.match(/[^\.!\?]+[\.!\?(?="|')]+(\s|$)/g );
-    dataTextLength = dataText.length+1;
-    console.log("Total number of 'sentences:'" + dataTextLength);
+    var dataText1 = dataText;
+    dataText1 = allTextSplitCopiedString.match(/[^\.!\?]+[\.!\?(?="|')]+(\s|$)/g );
+    if (dataText1 != null) {
+        sentencesBeenEntered = true;
+        // var addOneToData = true;
+        // if (addOneToData =
+        dataTextLength = dataText1.length;
+            // addOneToData = false;
+    }       else {
+        if (dataText1 === null) {
+            sentencesBeenEntered = false;
+    }
+}
+    console.log("Total number of 'sentences': " + dataTextLength);
     // console.log("ALL TEXT SPLIT:");
 }
 
@@ -134,7 +149,7 @@ function getKeyAndValues(a, b) {                    //  Combines the two arrays 
 }
 
 function objToString (counts) {         //  Make object into string to send into text file
-    strObj = "Word Counter: " + "\n" + "(Ignore first blank line)" + "\n" + "\n";
+    strObj = "Word Counter: " + "\n" + "(Ignore first blank line)"  + "\n";
     for (var p in counts) {
         if (counts.hasOwnProperty(p)) {
             strObj +=  "Word: " + p + " - " + "Frequency: " + counts[p] +"\n";
@@ -200,17 +215,26 @@ function saveTextAsFile() {
     splitAllText(allText);
     checkSplitText(allTextSplit, counts);
     hasDuplicates(counts, a, b);
-    var numOfWordsString = "Total Number of 'Words' Recorded: " + numOfWords;
-    var possiblePasswordsText = "Password Finder: " + "\n" + "(Potential passwords that continually show up are most likely to be actual passwords)"
+    var numOfWordsString = "Total number of 'words' recorded: " + numOfWords;
+    var possiblePasswordsText = "Potential password finder: " + "\n" + "(Potential passwords that continually show up are most likely to be actual passwords)"
                                 + "\n" + possiblePasswordsString;
     var dateString = new Date().toLocaleString();
     //  This is the final string with all the log data recorded
     var recordedTextString = "Text recorded: " + "\n" + allTextSplitCopiedString;
-    var numberOfSentencesString = "Total number of 'sentences:'" + "\n" + dataTextLength;
-    var fullLog = "Key Recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" +
+    if (sentencesBeenEntered === true) {
+        numberOfSentencesString = "Total number of 'sentences': " + "\n" + dataTextLength;
+        fullLog = "Key recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" +
      "\n" +  strObj + "\n" + "\n" + recordedTextString + "\n" + "\n" + "\n" + numberOfSentencesString + "\n" + "\n" + "\n" + possiblePasswordsText;   
     // allTextJoined = allTextSplit.join([separator = ' ']);
     // var textToWrite = allTextJoined;
+    } else {
+        console.log("FALSE");
+        if (sentencesBeenEntered === false) {
+            numberOfSentencesString = "Total number of 'sentences': " + "\n" + "0";
+            fullLog = "Key recordings saved on " + dateString + "\n" + "\n" + "\n" +  numOfWordsString + "\n" + "\n" +
+            "\n" +  strObj + "\n" + "\n" + recordedTextString + "\n" + "\n" + "\n" + numberOfSentencesString + "\n" + "\n" + "\n" + possiblePasswordsText;   
+    }
+}
     var textFileAsBlob = new Blob([fullLog], {type:'text/plain'});
     var fileNameToSaveAs = data;
     var downloadLink = document.createElement("a");
