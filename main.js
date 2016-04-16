@@ -2,7 +2,7 @@
 //  Written by Johnny Dunn
 
 //  Insert this script into the console of the web browser (Tested with Chrome only) to get data
-//  Data only saves upon button clicking with the included demo HTML page; soon there will be remote uploading of the log added
+//  Data only saves upon button clicking with the included demo HTML page
 //  For security testing / desmonstration purposes only
 
 //  Credit http://stackoverflow.com/questions/5667888/counting-the-occurrences-of-javascript-array-elements for some word frequency code
